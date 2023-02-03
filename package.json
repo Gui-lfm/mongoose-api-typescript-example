@@ -4,9 +4,9 @@
   "description": "Repositório que guiará a seção 12 - APIs orientadas a objetos e NoSQL",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "env $(cat .env) ts-node-dev src/server.ts",
+    "dev": "ts-node-dev src/server.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "env $(cat .env) mocha -r ts-node/register tests/unit/**/*.test.ts --exit",
+    "test": "mocha -r ts-node/register tests/unit/**/*.test.ts --exit",
     "test:coverage": "nyc npm test"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "5.3.1",
     "@typescript-eslint/parser": "5.3.1",
+    "dotenv": "16.0.0",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "15.0.0",
