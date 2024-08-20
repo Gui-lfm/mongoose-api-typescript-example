@@ -3,7 +3,9 @@ import sinon from 'sinon';
 import { Model } from 'mongoose';
 import IPayment from '../../../src/Interfaces/IPayment';
 import TransferService from '../../../src/Services/TransferService';
-import Payment from '../../../src/Domain/Payment';
+import Payment from '../../../src/Domain/Payment/Payment';
+import PaymentStatus from '../../../src/utils/PaymentStatus';
+import Key from '../../../src/Domain/Key/Key';
 
 describe('Deveria criar uma transferência TRIX', function () {
   it('Deveria criar uma transferência TRIX com SUCESSO', async function () {
@@ -19,7 +21,16 @@ describe('Deveria criar uma transferência TRIX', function () {
       50000,
       '858.898.670-16',
       '63319d80feb9f483ee823ac5',
+      PaymentStatus.completed,
     );
+
+    const keyOutput = new Key(
+      '442.456.489-20',
+      'Wozniak',
+      'cpf',
+      '63319d80feb9f483ee823ac5',
+    );
+
     sinon.stub(Model, 'create').resolves(paymentOutput);
 
     const service = new TransferService();

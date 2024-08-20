@@ -63,6 +63,14 @@ class Payment {
   public getKey() {
     return this.key;
   }
+
+  public getStatus() {
+    return this.status;
+  }
+
+  public setStatus() {
+    
+  }
 }
 
 export default Payment;

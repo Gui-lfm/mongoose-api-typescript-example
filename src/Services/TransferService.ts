@@ -1,4 +1,4 @@
-import Payment from '../Domain/Payment';
+import Payment from '../Domain/Payment/Payment';
 import IPayment from '../Interfaces/IPayment';
 import PaymentODM from '../Models/PaymentODM';
 
