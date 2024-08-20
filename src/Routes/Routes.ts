@@ -34,4 +34,9 @@ routes.get(
   (req, res, next) => new KeyController(req, res, next).getByValue(),
 );
 
+routes.get(
+  '/key/owner/:name',
+  (req, res, next) => new KeyController(req, res, next).getByOwner(),
+);
+
 export default routes;

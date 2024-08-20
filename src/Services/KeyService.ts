@@ -30,6 +30,13 @@ class KeyService {
 
     return this.createKeyDomain(key);
   }
+
+  public async getByOwner(owner: string) {
+    const keyODM = new KeyODM();
+    const keys = await keyODM.findByOwner(owner);
+    const keySet = keys.map((key) => this.createKeyDomain(key));
+    return keySet;
+  }
 }
 
 export default KeyService;

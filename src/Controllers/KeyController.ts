@@ -35,6 +35,12 @@ class KeyController {
     const key = await this.service.getByValue(value);
     return this.res.status(200).json(key);
   }
+
+  public async getByOwner() {
+    const { name } = this.req.params;
+    const keys = await this.service.getByOwner(name);
+    return this.res.status(200).json(keys);
+  }
 }
 
 export default KeyController;

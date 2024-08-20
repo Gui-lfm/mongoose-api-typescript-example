@@ -16,6 +16,10 @@ class KeyODM extends AbstractODM<IKey> {
   public async findByValue(value: string): Promise<IKey | null> {
     return this.model.findOne({ value });
   }
+
+  public async findByOwner(owner: string): Promise<IKey[]> {
+    return this.model.find({ owner });
+  }
 }
 
 export default KeyODM;
