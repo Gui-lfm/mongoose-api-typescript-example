@@ -35,7 +35,7 @@ describe('Deveria validar e criar chaves', function () {
       type: 'cpf',
     };
     sinon.stub(Model, 'create').resolves({});
-    
+
     try {
       const service = new KeyService();
       await service.register(keyInput);
@@ -71,7 +71,7 @@ describe('Deveria validar e criar chaves', function () {
       type: 'phonenumber',
     };
     sinon.stub(Model, 'create').resolves({});
-    
+
     try {
       const service = new KeyService();
       await service.register(keyInput);
@@ -107,7 +107,43 @@ describe('Deveria validar e criar chaves', function () {
       type: 'mail',
     };
     sinon.stub(Model, 'create').resolves({});
-    
+
+    try {
+      const service = new KeyService();
+      await service.register(keyInput);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal(RESULT_ERROR);
+    }
+  });
+
+  it('Criando chave de tipo Random com SUCESSO', async function () {
+    const keyInput: IKey = {
+      value: '123e4567-e12b-12d1-a456-426655440000',
+      owner: 'Martha',
+      type: 'random',
+    };
+    const keyOutput: Key = new Key(
+      '123e4567-e12b-12d1-a456-426655440000',
+      'Martha',
+      'random',
+      '633ec9fa3df977e30e993492',
+    );
+    sinon.stub(Model, 'create').resolves(keyOutput);
+
+    const service = new KeyService();
+    const result = await service.register(keyInput);
+
+    expect(result).to.be.deep.equal(keyOutput);
+  });
+
+  it('Criando chave de tipo Random é inválida', async function () {
+    const keyInput: IKey = {
+      value: '123',
+      owner: 'Martha',
+      type: 'random',
+    };
+    sinon.stub(Model, 'create').resolves({});
+
     try {
       const service = new KeyService();
       await service.register(keyInput);
