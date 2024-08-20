@@ -16,15 +16,14 @@ class TransferService {
         payment.amount,
         payment.key,
         payment.id,
+        payment.status,
       );
     }
     return null;
   }
 
   public async transfer(payment: IPayment) {
-    if (!this.isValidKey(payment.key)) {
-      throw new Error('Invalid Key!');
-    }
+    if (!this.isValidKey(payment.key)) throw new Error('Invalid Key!');
 
     // Criar instância da Model de Payment usando Mongoose
     const paymentODM = new PaymentODM();
@@ -47,13 +46,20 @@ class TransferService {
 
   public async getTransferByKey(key: string) {
     const paymentODM = new PaymentODM();
-    
+
     const payments = await paymentODM.findByKey(key);
-    
+
     const paymentArray = payments.map((payment) =>
       this.createPaymentDomain(payment));
-    
+
     return paymentArray;
+  }
+
+  public async undoTransfer(id: string, payment: IPayment) {
+    if (!this.isValidKey(payment.key)) throw Error('Invalid Key!');
+    const paymentODM = new PaymentODM();
+
+    return paymentODM.update(id, payment);
   }
 }
 

@@ -8,7 +8,7 @@ class PhoneNumber implements IKey, IValid {
   readonly type: string;
   
   constructor(value: string, owner: string) {
-    if (!this.isValid(value)) throw Error('Invalid Key');
+    if (!this.isValid(value)) throw Error('Invalid Key Type!');
     this.value = value;
     this.owner = owner;
     this.type = KeyTypes.PHONE_NUMBER;

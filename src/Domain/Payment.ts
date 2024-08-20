@@ -1,9 +1,12 @@
+import PaymentStatus from '../utils/PaymentStatus';
+
 class Payment {
   private id: string | undefined;
   private payByPerson: string;
   private payToPerson: string;
   private amount: number;
   private key: string;
+  private status: PaymentStatus;
 
   constructor(
     payByPerson: string,
@@ -11,12 +14,14 @@ class Payment {
     amount: number,
     key: string,
     id: string | undefined,
+    status: PaymentStatus = 1,
   ) {
     this.id = id;
     this.payByPerson = payByPerson;
     this.payToPerson = payToPerson;
     this.amount = amount;
     this.key = key;
+    this.status = status;
   }
 
   public setId(id: string) {

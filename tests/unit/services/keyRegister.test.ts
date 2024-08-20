@@ -5,7 +5,7 @@ import Key from '../../../src/Domain/Key/Key';
 import IKey from '../../../src/Interfaces/IKey';
 import KeyService from '../../../src/Services/KeyService';
 
-const RESULT_ERROR = 'Invalid Key';
+const RESULT_ERROR = 'Invalid Key Type!';
 
 describe('Deveria validar e criar chaves', function () {
   it('Criando uma chave de tipo CPF com SUCESSO', async function () {
